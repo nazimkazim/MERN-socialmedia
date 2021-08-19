@@ -4,7 +4,7 @@ import { Users } from '../../dummyData';
 import Online from '../Online/Online';
 
 export default function RightBar({ profile }) {
-  /* const HomeRightbar = () => {
+  const HomeRightbar = () => {
     return (
       <>
         <div className='birthdayContainer'>
@@ -22,7 +22,7 @@ export default function RightBar({ profile }) {
         </ul>
       </>
     );
-  }; */
+  };
 
   const ProfileRightBar = () => {
     return (
@@ -84,6 +84,14 @@ export default function RightBar({ profile }) {
             />
             <span className='rightbarFollowingName'>Jon Carter</span>
           </div>
+          <div className='rightbarFollowing'>
+            <img
+              src='assets/person/6.jpeg'
+              alt=''
+              className='rightbarFollowingImg'
+            />
+            <span className='rightbarFollowingName'>Jon Carter</span>
+          </div>
         </div>
       </>
     );
@@ -91,7 +99,7 @@ export default function RightBar({ profile }) {
   return (
     <div className='rightbar'>
       <div className='rightBarWrapper'>
-        <ProfileRightBar />
+        {profile ? <ProfileRightBar /> : <HomeRightbar />}
       </div>
     </div>
   );
