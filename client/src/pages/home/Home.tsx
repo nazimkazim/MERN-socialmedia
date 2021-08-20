@@ -5,15 +5,17 @@ import SideBar from '../../components/SideBar/SideBar';
 import Topbar from '../../components/TopBar/Topbar';
 import './home.css';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Topbar />
       <div className='homeContainer'>
         <SideBar />
         <Feed />
-        <RightBar />
+        <RightBar profile={false} />
       </div>
     </>
   );
 }
+
+export default Home;

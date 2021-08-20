@@ -1,7 +1,10 @@
 import React from 'react';
 import './topbar.css';
+
 import { Person, Search, Chat, Notifications } from '@material-ui/icons';
-export default function Topbar() {
+
+
+const Topbar: React.FC = () => {
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
@@ -40,3 +43,5 @@ export default function Topbar() {
     </div>
   );
 }
+
+export default Topbar;

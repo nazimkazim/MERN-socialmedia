@@ -14,7 +14,7 @@ import './sidebar.css';
 import { Users } from '../../dummyData';
 import CloseFriend from '../CloseFriend/CloseFriend';
 
-export default function SideBar() {
+const SideBar: React.FC = () => {
   return (
     <div className='sidebar'>
       <div className='sidebarWrapper'>
@@ -67,3 +67,5 @@ export default function SideBar() {
     </div>
   );
 }
+
+export default SideBar;

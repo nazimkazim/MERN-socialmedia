@@ -3,7 +3,23 @@ import React, { useState } from 'react';
 import './post.css';
 import { Users } from '../../dummyData';
 
-export default function Post({ post }) {
+
+interface Post {
+  id: number;
+  photo: string;
+  date: string;
+  userId: number;
+  like: number;
+  comment: number;
+  desc?: string;
+}
+
+interface Posts {
+  post: Post
+}
+
+
+const Post: React.FC<Posts> = ({ post }) => {
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
   const user = Users.find((u) => u.id === post.userId);
@@ -20,7 +36,7 @@ export default function Post({ post }) {
           <div className='postTopLeft'>
             <img className='postProfileImg' src={user?.profilePicture} alt='' />
             <span className='postUserName'>{user?.username}</span>
-            <span className='postDate'>{post?.data}</span>
+            <span className='postDate'>{post?.date}</span>
           </div>
           <div className='postTopRight'>
             <MoreVert />
@@ -54,3 +70,5 @@ export default function Post({ post }) {
     </div>
   );
 }
+
+export default Post;

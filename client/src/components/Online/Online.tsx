@@ -1,7 +1,17 @@
 import React from 'react';
 import './online.css';
 
-export default function Online({ user }) {
+interface User {
+  id: number;
+  profilePicture: string;
+  username: string;
+}
+
+interface Users {
+  user: User
+}
+
+const Online: React.FC<Users> = ({ user }) => {
   return (
     <li key={user.id} className='rightbarFriend'>
       <div className='rightbarProfileImgContainer'>
@@ -12,3 +22,5 @@ export default function Online({ user }) {
     </li>
   );
 }
+
+export default Online;

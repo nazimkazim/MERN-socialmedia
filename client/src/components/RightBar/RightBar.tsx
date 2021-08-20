@@ -3,7 +3,11 @@ import './rightbar.css';
 import { Users } from '../../dummyData';
 import Online from '../Online/Online';
 
-export default function RightBar({ profile }) {
+interface RightBarProps {
+  profile: boolean
+}
+
+const RightBar: React.FC<RightBarProps> = ({ profile }) => {
   const HomeRightbar = () => {
     return (
       <>
@@ -104,3 +108,5 @@ export default function RightBar({ profile }) {
     </div>
   );
 }
+
+export default RightBar;

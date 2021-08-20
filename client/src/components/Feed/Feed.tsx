@@ -4,7 +4,9 @@ import Share from '../Share/Share';
 import './feed.css';
 import { Posts } from '../../dummyData';
 
-export default function Feed() {
+
+
+const Feed: React.FC = () => {
   return (
     <div className='feed'>
       <div className='feedWrapper'>
@@ -16,3 +18,5 @@ export default function Feed() {
     </div>
   );
 }
+
+export default Feed;
