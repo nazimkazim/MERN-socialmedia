@@ -4,7 +4,7 @@ import './post.css';
 import { Users } from '../../dummyData';
 
 
-interface Post {
+interface PostProps {
   id: number;
   photo: string;
   date: string;
@@ -15,12 +15,12 @@ interface Post {
 }
 
 interface Posts {
-  post: Post
+  post: PostProps
 }
 
 
 const Post: React.FC<Posts> = ({ post }) => {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState<number>(post.like);
   const [isLiked, setIsLiked] = useState(false);
   const user = Users.find((u) => u.id === post.userId);
 
