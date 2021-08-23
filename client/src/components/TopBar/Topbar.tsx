@@ -1,5 +1,6 @@
 import React from 'react';
 import './topbar.css';
+import { Link } from "react-router-dom"
 
 import { Person, Search, Chat, Notifications } from '@material-ui/icons';
 
@@ -8,7 +9,10 @@ const Topbar: React.FC = () => {
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
-        <span className='logo'>Lamasocial</span>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <span className='logo'>Lamasocial</span>
+        </Link>
+
       </div>
       <div className='topbarCenter'>
         <div className='searchbar'>

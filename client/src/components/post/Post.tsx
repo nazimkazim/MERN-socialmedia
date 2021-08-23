@@ -1,30 +1,30 @@
 import { MoreVert } from '@material-ui/icons';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './post.css';
-import { Users } from '../../dummyData';
-
-
-interface PostProps {
-  id: number;
-  photo: string;
-  date: string;
-  userId: number;
-  like: number;
-  comment: number;
-  desc?: string;
-}
-
-interface Posts {
-  post: PostProps
-}
+import { Posts, User } from '../../interfaces'
+import { format } from 'timeago.js'
+import { Link } from 'react-router-dom';
 
 
 const Post: React.FC<Posts> = ({ post }) => {
-  const [like, setLike] = useState<number>(post.like);
+  const [like, setLike] = useState(post.likes.length);
+  const [user, setUser] = useState<User | null>(null);
   const [isLiked, setIsLiked] = useState(false);
-  const user = Users.find((u) => u.id === post.userId);
 
-  const PF = process.env.REACT_APP_PUBLIC_URL;
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`)
+      if (res.data) {
+        setUser(res.data);
+      }
+
+    }
+    fetchUser()
+  }, [post.userId])
+
+
+  const PF: string | undefined = process.env.REACT_APP_PUBLIC_URL;
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -36,17 +36,19 @@ const Post: React.FC<Posts> = ({ post }) => {
       <div className='postWrapper'>
         <div className='postTop'>
           <div className='postTopLeft'>
-            <img className='postProfileImg' src={user?.profilePicture} alt='' />
+            <Link to={`profile/${user?.username}`}>
+              <img className='postProfileImg' src={user?.profilePicture || (PF + 'person/no_avatar.png')} alt='' />
+            </Link>
             <span className='postUserName'>{user?.username}</span>
-            <span className='postDate'>{post?.date}</span>
+            <span className='postDate'>{format(post?.createdAt)}</span>
           </div>
           <div className='postTopRight'>
             <MoreVert />
           </div>
         </div>
         <div className='postCenter'>
-          <span className='postText'>{post?.desc}</span>
-          <img className='postImg' src={PF + post?.photo} alt='' />
+          <span className='postText'>{post?.description}</span>
+          <img className='postImg' src={PF + post?.image} alt='' />
         </div>
         <div className='postBottom'>
           <div className='postBottomLeft'>
@@ -65,7 +67,7 @@ const Post: React.FC<Posts> = ({ post }) => {
             <span className='postLikeCounter'>{like} people like it</span>
           </div>
           <div className='postBottomRight'>
-            <span className='postCommentText'>{post?.comment} comments</span>
+            <span className='postCommentText'>{user && user.comment} comments</span>
           </div>
         </div>
       </div>

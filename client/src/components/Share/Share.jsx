@@ -1,5 +1,4 @@
 import { PermMedia, Label, Room, EmojiEmotions } from '@material-ui/icons';
-import React from 'react';
 import './share.css';
 
 export default function Share() {

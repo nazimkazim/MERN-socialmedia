@@ -21,11 +21,9 @@ const App: React.FC = () => {
         <Register />
       </Route>
       <Route path="/profile/:username">
-        <Home />
+        <Profile />
       </Route>
     </Switch>
-    {/* <Home /> */}
-    <Profile />
   </Router>;
 }
 
