@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       <div className='homeContainer'>
         <SideBar />
         <Feed />
-        <RightBar profile={false} />
+        <RightBar />
       </div>
     </>
   );

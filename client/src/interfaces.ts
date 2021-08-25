@@ -25,4 +25,20 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   comment?: string;
+  description?: string;
+  city: string;
+  from?: string;
+  relationship?: number;
+}
+
+export interface UserObj {
+  user?: User
+}
+
+export interface FeedProps {
+  username?: string
+}
+
+export interface RouteParams {
+  username: string
 }

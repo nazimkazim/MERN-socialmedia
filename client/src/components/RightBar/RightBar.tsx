@@ -2,13 +2,12 @@ import React from 'react';
 import './rightbar.css';
 import { Users } from '../../dummyData';
 import Online from '../Online/Online';
+import { UserObj } from '../../interfaces'
 
-interface RightBarProps {
-  profile: boolean
-}
 
-const RightBar: React.FC<RightBarProps> = ({ profile }) => {
+const RightBar: React.FC<UserObj | null> = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_URL;
+
   const HomeRightbar = () => {
     return (
       <>
@@ -36,15 +35,15 @@ const RightBar: React.FC<RightBarProps> = ({ profile }) => {
         <div className='rightbarInfo'>
           <div className='rightbarInfoItem'>
             <span className='rightbarInfoKey'>City:</span>
-            <span className='rightbarInfoValue'>New York</span>
+            <span className='rightbarInfoValue'>{user && user.city}</span>
           </div>
           <div className='rightbarInfoItem'>
             <span className='rightbarInfoKey'>From:</span>
-            <span className='rightbarInfoValue'>Madrid</span>
+            <span className='rightbarInfoValue'>{user && user.from}</span>
           </div>
           <div className='rightbarInfoItem'>
             <span className='rightbarInfoKey'>Relationship:</span>
-            <span className='rightbarInfoValue'>Single</span>
+            <span className='rightbarInfoValue'>{user && user.relationship === 1 ? "Single" : user && user.relationship === 2 ? "Married" : "-"}</span>
           </div>
         </div>
         <h4 className='rightbarTitle'>User friends</h4>
@@ -104,7 +103,7 @@ const RightBar: React.FC<RightBarProps> = ({ profile }) => {
   return (
     <div className='rightbar'>
       <div className='rightBarWrapper'>
-        {profile ? <ProfileRightBar /> : <HomeRightbar />}
+        {user ? <ProfileRightBar /> : <HomeRightbar />}
       </div>
     </div>
   );

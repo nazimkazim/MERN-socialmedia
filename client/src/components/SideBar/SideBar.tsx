@@ -59,9 +59,9 @@ const SideBar: React.FC = () => {
         <button className='sidebarButton'>Show more</button>
         <hr className='sidebarHr' />
         <ul className='sidebarFriendList'>
-          {Users.map((u) => (
-            <CloseFriend user={u} />
-          ))}
+          {Users.map((u) => {
+            return <CloseFriend key={u.id} user={u} />
+          })}
         </ul>
       </div>
     </div>

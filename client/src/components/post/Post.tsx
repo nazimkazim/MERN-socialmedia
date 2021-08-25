@@ -14,7 +14,8 @@ const Post: React.FC<Posts> = ({ post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`)
+      const res = await axios.get(`/users?userId=${post.userId}`)
+      console.log(res)
       if (res.data) {
         setUser(res.data);
       }
@@ -22,6 +23,11 @@ const Post: React.FC<Posts> = ({ post }) => {
     }
     fetchUser()
   }, [post.userId])
+
+
+
+  //console.log(user)
+  //console.log(post)
 
 
   const PF: string | undefined = process.env.REACT_APP_PUBLIC_URL;
@@ -36,10 +42,10 @@ const Post: React.FC<Posts> = ({ post }) => {
       <div className='postWrapper'>
         <div className='postTop'>
           <div className='postTopLeft'>
-            <Link to={`profile/${user?.username}`}>
+            <Link to={`/profile/${user?.username}`}>
               <img className='postProfileImg' src={user?.profilePicture || (PF + 'person/no_avatar.png')} alt='' />
             </Link>
-            <span className='postUserName'>{user?.username}</span>
+            <span className='postUserName'>{user && user.username}</span>
             <span className='postDate'>{format(post?.createdAt)}</span>
           </div>
           <div className='postTopRight'>
