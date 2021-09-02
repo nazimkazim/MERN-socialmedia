@@ -52,6 +52,10 @@
   outline: none;
 }
 
+.loginButton:disabled {
+  cursor: not-allowed;
+}
+
 .loginButton {
   height: 50px;
   border-radius: 10px;
@@ -77,4 +81,8 @@
   color: white;
   font-weight: 500;
   cursor: pointer;
+}
+
+.loginRegisterButton:disabled {
+  cursor: not-allowed;
 }
