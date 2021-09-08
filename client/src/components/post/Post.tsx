@@ -5,12 +5,19 @@ import './post.css';
 import { Posts, User } from '../../interfaces'
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Post: React.FC<Posts> = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [user, setUser] = useState<User | null>(null);
   const [isLiked, setIsLiked] = useState(false);
+  const { user: currentUser } = useContext(AuthContext)
+
+  useEffect(() => {
+    return setIsLiked(post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes])
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,15 +31,14 @@ const Post: React.FC<Posts> = ({ post }) => {
     fetchUser()
   }, [post.userId])
 
-
-
-  //console.log(user)
-  //console.log(post)
-
-
   const PF: string | undefined = process.env.REACT_APP_PUBLIC_URL;
 
   const likeHandler = () => {
+    try {
+      axios.put(`posts/${post._id}/like`, { userId: currentUser._id })
+    } catch (error) {
+      console.log(error)
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -43,7 +49,9 @@ const Post: React.FC<Posts> = ({ post }) => {
         <div className='postTop'>
           <div className='postTopLeft'>
             <Link to={`/profile/${user?.username}`}>
-              <img className='postProfileImg' src={user?.profilePicture || (PF + 'person/no_avatar.png')} alt='' />
+              <img
+                className='postProfileImg'
+                src={user?.profilePicture ? PF + user['profilePicture'] : PF + "person/no_avatar.png"} alt='' />
             </Link>
             <span className='postUserName'>{user && user.username}</span>
             <span className='postDate'>{format(post?.createdAt)}</span>

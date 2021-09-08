@@ -1,7 +1,7 @@
 export interface PostProps {
   createdAt: Date;
   description: string;
-  likes: number[];
+  likes: string[];
   image: string;
   updatedAt: Date;
   userId?: string;
