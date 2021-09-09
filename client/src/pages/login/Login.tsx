@@ -6,14 +6,14 @@ import { CircularProgress } from '@material-ui/core';
 
 
 export default function Login() {
+
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
   const { isFetching, error, dispatch } = useContext(AuthContext)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    console.log(email.current && email.current.value)
-    console.log(password.current && password.current.value)
     if (password.current && email.current) {
       loginCall({ email: email.current.value, password: password.current.value }, dispatch)
     }

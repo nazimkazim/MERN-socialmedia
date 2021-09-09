@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const Topbar: React.FC = () => {
   const { user } = useContext(AuthContext);
-  console.log(user)
+
   const PF: string = process.env.REACT_APP_PUBLIC_URL;
   return (
     <div className='topbarContainer'>

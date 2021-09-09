@@ -41,6 +41,12 @@
   margin-left: 20px;
 }
 
+.shareBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .shareOption {
   display: flex;
   align-items: center;
