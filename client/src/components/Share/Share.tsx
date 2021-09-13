@@ -13,19 +13,55 @@ const Share:React.FC = () => {
 
   const [file, setFile] = useState(null);
 
-  const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
+/*   const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newPost = {
       userId:user._id,
-      desc: desc.current.value
+      desc: desc.current.value,
+      img:""
     }
-
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("file", file);
+      data.append("name", fileName);
+      newPost.img = fileName;
+      try {
+        await axios.post("/upload", data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
     try {
+      console.log(newPost);
       await axios.post("/posts", newPost);
     } catch (error) {
       console.log(error);
     }
-  }
+  } */
+  const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      description: desc.current.value,
+      image:""
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.image = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
+    try {
+      await axios.post("/posts", newPost);
+      //window.location.reload();
+    } catch (err) {}
+  };
 
 
 

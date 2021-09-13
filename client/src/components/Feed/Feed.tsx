@@ -20,7 +20,9 @@ const Feed: React.FC<FeedProps> = ({ username }) => {
         await axios.get(`/posts/profile/${username}`) :
         await axios.get(`posts/timeline/${user._id}`)
       if (res.data) {
-        setPosts(res.data);
+        setPosts(res.data.sort((p1:PostProps, p2:PostProps) => {
+          return +new Date(p2.createdAt) - +new Date(p1.createdAt);
+        }));
       }
 
     }
