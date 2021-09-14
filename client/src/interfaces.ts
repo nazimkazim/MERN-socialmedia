@@ -42,3 +42,12 @@ export interface FeedProps {
 export interface RouteParams {
   username: string
 }
+
+export interface Friend {
+  profilePicture: any;
+  username: string,
+  profileImage:string,
+  _id:string
+}
+
+export type FriendI = Friend[]

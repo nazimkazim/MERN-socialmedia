@@ -32,7 +32,7 @@ const Feed: React.FC<FeedProps> = ({ username }) => {
   return (
     <div className='feed'>
       <div className='feedWrapper'>
-        <Share />
+        {username && username === user.username && <Share />}
         {posts && posts.map((p: PostProps) => (
           <Post key={p._id} post={p} />
         ))}
