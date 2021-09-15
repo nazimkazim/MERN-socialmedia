@@ -1,4 +1,4 @@
-import { PermMedia, Label, Room, EmojiEmotions } from '@material-ui/icons';
+import { PermMedia, Label, Room, EmojiEmotions, Cancel } from '@material-ui/icons';
 import './share.css';
 import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -13,32 +13,6 @@ const Share:React.FC = () => {
 
   const [file, setFile] = useState(null);
 
-/*   const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newPost = {
-      userId:user._id,
-      desc: desc.current.value,
-      img:""
-    }
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("file", file);
-      data.append("name", fileName);
-      newPost.img = fileName;
-      try {
-        await axios.post("/upload", data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    try {
-      console.log(newPost);
-      await axios.post("/posts", newPost);
-    } catch (error) {
-      console.log(error);
-    }
-  } */
   const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newPost = {
@@ -82,6 +56,12 @@ const Share:React.FC = () => {
           />
         </div>
         <hr className='shareHr' />
+        {file && (
+          <div className="shareImgContainer">
+            <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
+            <Cancel className="shareCancelImg" onClick={() => setFile(null)}/>
+          </div>
+        )}
         <form className="shareBottom" onSubmit={submitHandler}>
         <div className='shareOptions'>
           <label htmlFor="file" className='shareOption'>

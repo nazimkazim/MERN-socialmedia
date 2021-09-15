@@ -1,8 +1,8 @@
-import { UserObj } from '../interfaces';
+import { User, UserObj } from '../interfaces';
 
 
 export interface InitialState {
-  user: null;
+  user: User;
   isFetching: boolean;
   error: boolean;
 }
@@ -19,7 +19,9 @@ type AppState = typeof INITIAL_STATE;
 type Action =
   { type: "LOGIN_START" } |
   { type: "LOGIN_SUCCESS"; payload: UserObj } |
-  { type: "LOGIN_FAILURE" }
+  { type: "LOGIN_FAILURE" } |
+  { type: "FOLLOW", payload: string } |
+  { type: "UNFOLLOW", payload: string }
 
 
 const AuthReducer = (state: AppState, action: Action) => {
@@ -41,6 +43,22 @@ const AuthReducer = (state: AppState, action: Action) => {
         user: null,
         isFetching: false,
         error: true,
+      };
+    case "FOLLOW":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          followings: [...state.user.followings, action.payload]
+        }
+      };
+    case "UNFOLLOW":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          followings: state.user.followings.filter(following => following !== action.payload)
+        }
       };
     default:
       return state;

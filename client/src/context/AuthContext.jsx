@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   },
   isFetching: false,
   error: false,
-  dispatch: () => {},
+  dispatch: (a, b) => {},
 };
 
 export const AuthContext = createContext(INITIAL_STATE);

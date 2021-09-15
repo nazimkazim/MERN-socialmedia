@@ -13,8 +13,8 @@ import { Add, Remove } from '@material-ui/icons';
 const RightBar: React.FC<UserObj | null> = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_URL;
   const [friends, setFriends] = useState<Friend[]>(null);
-  const {user:currentUser} = useContext(AuthContext)
-  const [followed, setFollowed] = useState(false);
+  const {user:currentUser, dispatch} = useContext(AuthContext)
+  const [followed, setFollowed] = useState(currentUser.followings.includes(user?._id));
 
   useEffect(() => {
     setFollowed(currentUser.followings.includes(user?._id));
@@ -35,9 +35,11 @@ const RightBar: React.FC<UserObj | null> = ({ user }) => {
   const handleClick = async () => {
     try {
       if (followed) {
-        await axios.put(`/users/${user._id}/follow`, {userId:currentUser._id})
-      } else {
         await axios.put(`/users/${user._id}/unfollow`, {userId:currentUser._id})
+        dispatch({type:"UNFOLLOW", payload:user._id})
+      } else {
+        await axios.put(`/users/${user._id}/follow`, {userId:currentUser._id})
+        dispatch({type:"FOLLOW", payload:user._id})
       }
     } catch (error) {
       console.log(error);

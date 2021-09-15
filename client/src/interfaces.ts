@@ -16,8 +16,8 @@ export interface User {
   _id: string;
   profilePicture?: string;
   coverPicture: string;
-  followers: [];
-  followings: [];
+  followers: string[];
+  followings: string[];
   isAdmin: boolean;
   username: string;
   email: string;
