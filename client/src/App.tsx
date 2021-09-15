@@ -10,6 +10,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+import Messenger from './pages/messenger/Messenger';
 
 const App: React.FC = () => {
   const { user } = useContext(AuthContext)
@@ -23,6 +24,9 @@ const App: React.FC = () => {
       </Route>
       <Route path="/register">
         {user ? <Redirect to="/" /> : <Register />}
+      </Route>
+      <Route path="/messenger">
+        {<Messenger />}
       </Route>
       <Route path="/profile/:username">
         <Profile />
