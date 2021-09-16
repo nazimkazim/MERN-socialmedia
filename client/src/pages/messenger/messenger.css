@@ -20,7 +20,41 @@
 
 .chatBox {
   flex: 5.5;
-  
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chatBoxTop {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.chatBoxBottom {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatMessageInput {
+  width: 80%;
+  min-height: 90px;
+  padding: 10px;
+}
+
+.chatSubmitButton {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
 }
 
 .chatOnline {
@@ -29,7 +63,6 @@
 
 .chatMenuWrapper, .chatBoxWrapper, .chatOnlineWrapper {
   padding: 10px;
-  background-color: lightblue;
   height: 100%;
 }
 

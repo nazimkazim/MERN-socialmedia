@@ -1,7 +1,10 @@
 import React from 'react'
+import ChatOnline from '../../components/ChatOnline/ChatOnline';
 import Conversation from '../../components/Conversations/Conversation';
+import Message from '../../components/Message/Message';
 import Topbar from '../../components/TopBar/Topbar';
 import './messenger.css'
+
 
 const Messenger: React.FC = () => {
   return (
@@ -19,14 +22,34 @@ const Messenger: React.FC = () => {
           </div>
         </div>
         <div className="chatBox">
-          <div className="chatMenuWrapper">
-            <div className="chatBoxTop"></div>
-            <div className="chatBoxBottom"></div>
+          <div className="chatBoxWrapper">
+            <div className="chatBoxTop">
+              <Message own={true}/>
+              <Message/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+              <Message own={true}/>
+            </div>
+            <div className="chatBoxBottom">
+              <textarea className="chatMessageInput" placeholder="write something...">
+
+              </textarea>
+              <button className="chatSubmitButton">Send</button>
+            </div>
           </div>
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
-            online
+            <ChatOnline/>
+            <ChatOnline/>
+            <ChatOnline/>
+            <ChatOnline/>
           </div>
         </div>
       </div>
